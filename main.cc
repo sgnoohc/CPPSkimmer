@@ -28,15 +28,18 @@ float DeltaR(float eta1, float phi1, float eta2, float phi2)
 int main() 
 {
 
-    bool TurnOnOnlyUsedBranches = true;
-
     // Open up the file and get the ROOT's TTree data
     TFile* file = new TFile("example.root");
     TTree* tree = (TTree*) file->Get("Events");
 
+    //======================================================================
+    // Configurations to play with
+    //----------------------------------------------------------------------
     tree->SetCacheSize(10000000);
     tree->SetCacheEntryRange(0, tree->GetEntries());
     tree->AddBranchToCache("*");
+    bool TurnOnOnlyUsedBranches = true;
+    //======================================================================
 
     if (TurnOnOnlyUsedBranches)
     {
